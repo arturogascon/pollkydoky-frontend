@@ -32,7 +32,16 @@ const NavBar = () => {
 
   return (
     <div className="w-full h-16 px-6 py-2 flex flex-row justify-between">
-      <h1 className="font-semibold text-2xl">Live Voting</h1>
+      <div className="flex items-center gap-x-1">
+        <img
+          className="inline-block w-8"
+          src="/icons/rovote_icon.png"
+          alt="Rovote Icon"
+        />
+        <h1 className="inline-block font-semibold text-2xl text-slate-500">
+          Rovote
+        </h1>
+      </div>
       <div>
         {isAuthenticated ? (
           <div>
