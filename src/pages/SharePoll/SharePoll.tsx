@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { Link, useParams } from "react-router-dom";
-import styles from "./SharePoll.module.scss";
+import styles from "./SharePoll.module.css";
 
 const SharePoll = () => {
   const [isUrlCopied, setIsUrlCopied] = useState<boolean>(false);

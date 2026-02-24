@@ -54,7 +54,7 @@ const Login = () => {
         <button
           className="button self-center mb-2"
           type="submit"
-          disabled={!form.email || !form.password}
+          disabled={!form.email || !form.password || loginMutation.isPending}
         >
           {loginMutation.isPending ? "Ingresando" : "Entrar"}
         </button>
