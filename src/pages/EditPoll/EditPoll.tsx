@@ -3,7 +3,7 @@ import { useEditPoll, useGetPoll } from "../../hooks/usePoll";
 import { useNavigate, useParams } from "react-router-dom";
 import { MAX_OPTIONS_LENGTH } from "../../utils/constants";
 import { checkIsOptionRepeated } from "../../utils/optionsUtils";
-import Input from "../../components/Input";
+import Input from "../../components/atoms/Input";
 
 const EditPoll = () => {
   const [question, setQuestion] = useState<string>("");
@@ -42,7 +42,7 @@ const EditPoll = () => {
 
   useEffect(() => {
     const areOptionsEdited = validOptions.some(
-      (option, index) => option !== poll?.options[index].text
+      (option, index) => option !== poll?.options[index].text,
     );
     if (
       (question && question !== poll?.question) ||
@@ -63,7 +63,7 @@ const EditPoll = () => {
 
   const handleOptionsChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     const newOptions = [...options];
     newOptions[index] = e.target.value;
@@ -73,7 +73,7 @@ const EditPoll = () => {
 
   const removeOption = (optionIndex: number) => {
     const updatedOptions = options.filter(
-      (_option, index) => index !== optionIndex
+      (_option, index) => index !== optionIndex,
     );
     setOptions(updatedOptions);
   };
@@ -92,7 +92,7 @@ const EditPoll = () => {
         onSuccess: () => {
           navigate(`/polls/${id}/share`);
         },
-      }
+      },
     );
   };
 
@@ -100,8 +100,8 @@ const EditPoll = () => {
     question.length > 0 && question.length < 5
       ? "El mínimo de caracteres es 5"
       : question.length > 200
-      ? "El máximo de caracteres es 200"
-      : "";
+        ? "El máximo de caracteres es 200"
+        : "";
 
   if (isLoading)
     return (

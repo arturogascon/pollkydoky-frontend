@@ -2,6 +2,7 @@ import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { Link, useParams } from "react-router-dom";
 import styles from "./SharePoll.module.css";
+import Button from "../../components/atoms/Button";
 
 const SharePoll = () => {
   const [isUrlCopied, setIsUrlCopied] = useState<boolean>(false);
@@ -26,8 +27,12 @@ const SharePoll = () => {
 
   return (
     <div className="text-center">
-      <h2>Comparte tu encuesta</h2>
-      <p>Comparte este QR o el link para votar</p>
+      <h1 className="text-2xl font-bold text-foreground md:text-3xl mb-1">
+        Comparte tu encuesta
+      </h1>
+      <p className="text-sm text-muted-foreground">
+        Comparte este QR o el link para votar
+      </p>
 
       <div className="m-4">
         <QRCodeCanvas
@@ -46,27 +51,29 @@ const SharePoll = () => {
         >
           &#10003;
         </span>
-        <button
-          className={styles.publicUrl}
-          onClick={handleCopyUrl}
-          title="Copiar URL"
-        >
-          {publicUrl}
-        </button>
+        <Button variant="dashed" onClick={handleCopyUrl} title="Copiar URL">
+          <span className="truncate">{publicUrl}</span>
+        </Button>
       </div>
 
-      <div className={styles.buttonContainer}>
+      <div>
         <button
-          className="font-semibold hover:font-bold"
+          className="mt-2 
+          font-semibold text-primary hover:underline hover:cursor-pointer"
           onClick={handleQRDownload}
         >
           Descargar QR
         </button>
       </div>
 
-      <div className={styles.linksContainer}>
-        <Link to={`/poll/${id}`}>Ir a pagina de votacion</Link>
-        <Link to={{ pathname: `/poll/${id}`, search: "?results=true" }}>
+      <div className="mt-3 font-medium flex flex-row px-5 sm:px-0 sm:gap-4">
+        <Link className="text-left w-fit" to={`/poll/${id}`}>
+          Ir a pagina de votacion
+        </Link>
+        <Link
+          className="text-right w-fit"
+          to={{ pathname: `/poll/${id}`, search: "?results=true" }}
+        >
           Ver resultados en tiempo real
         </Link>
       </div>

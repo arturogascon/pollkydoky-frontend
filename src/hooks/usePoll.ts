@@ -24,3 +24,11 @@ export const useEditPoll = (id: string) =>
       return res.data;
     },
   });
+
+export const useDeletePoll = () =>
+  useMutation({
+    mutationFn: async (id: string) => {
+      const res = await api.delete(`/polls/${id}`);
+      return res.data;
+    },
+  });

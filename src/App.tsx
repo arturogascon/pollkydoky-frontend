@@ -1,13 +1,14 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import PollList from "./pages/PollList/PollList";
+import { Route, Routes } from "react-router-dom";
+import PollList from "./pages/Dashboard/Dashboard";
 import PollPage from "./pages/PollPage/PollPage";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import PrivateRoute from "./components/PrivateRoute";
+import ProtectedRoute from "./components/atoms/ProtectedRoute";
 import CreatePoll from "./pages/CreatePoll/CreatePoll";
 import SharePoll from "./pages/SharePoll/SharePoll";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/organisms/NavBar";
 import EditPoll from "./pages/EditPoll/EditPoll";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
@@ -15,31 +16,52 @@ function App() {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute onlyGuest>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <ProtectedRoute onlyGuest>
+                <Signup />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute onlyGuest>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute>
+              <ProtectedRoute>
                 <PollList />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/create"
             element={
-              <PrivateRoute>
+              <ProtectedRoute>
                 <CreatePoll />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/polls/:id/share"
             element={
-              <PrivateRoute>
+              <ProtectedRoute>
                 <SharePoll />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route path="/poll/:id" element={<PollPage />} />
