@@ -19,6 +19,10 @@ const ProtectedRoute = ({
     );
   }
 
+  if (onlyGuest && isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
+
   if (!onlyGuest && !isAuthenticated) {
     return <Navigate to="/login" />;
   }

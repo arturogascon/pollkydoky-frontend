@@ -64,8 +64,8 @@ const Dashboard = () => {
             Administra y rastrea tus encuestas en un solo lugar
           </p>
         </div>
-        <Button icon="add_line">
-          <Link to="/create">Crear encuesta</Link>
+        <Button icon="add_line" onClick={() => navigate("/create")}>
+          Crear encuesta
         </Button>
       </div>
 
