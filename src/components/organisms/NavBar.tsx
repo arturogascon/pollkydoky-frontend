@@ -60,11 +60,7 @@ const NavBar = () => {
             ))}
           </div>
         ) : (
-          <Button
-            icon="mgc_entrance_line"
-            onClick={handleLogin}
-            title="Ingresar"
-          >
+          <Button icon="entrance_line" onClick={handleLogin}>
             Ingresar
           </Button>
         )}

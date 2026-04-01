@@ -137,7 +137,6 @@ const CreatePoll = () => {
               type="button"
               icon="add_line"
               onClick={addOption}
-              title="Agregar opción"
             >
               Agregar opción
             </Button>
@@ -146,6 +145,7 @@ const CreatePoll = () => {
         <Button
           className="self-end w-full sm:w-24"
           type="submit"
+          icon="document_fill"
           disabled={isSubmitDisabled}
         >
           Crear

@@ -32,6 +32,14 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center">
+      <div
+        className="pointer-events-none fixed inset-0 overflow-hidden -z-1"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/5" />
+        <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-cyan/5" />
+        <div className="absolute top-1/4 right-1/4 h-32 w-32 rounded-full bg-yellow/5" />
+      </div>
       <div className="w-full max-w-md m-auto">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-foreground">
@@ -43,7 +51,7 @@ const Login = () => {
         </div>
         <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
           {loginMutation.isError && (
-            <p className="error-label">{"Credenciales invalidas"}</p>
+            <p className="error-label">{"Credenciales inválidas"}</p>
           )}
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <Input

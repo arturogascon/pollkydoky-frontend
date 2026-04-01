@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MAX_OPTIONS_LENGTH } from "../../utils/constants";
 import { checkIsOptionRepeated } from "../../utils/optionsUtils";
 import Input from "../../components/atoms/Input";
+import Button from "../../components/atoms/Button";
 
 const EditPoll = () => {
   const [question, setQuestion] = useState<string>("");
@@ -118,69 +119,78 @@ const EditPoll = () => {
     );
 
   return (
-    <div className="form-container">
+    <div>
       {editPoll.isError && (
         <p className="error-label">Error al enviar formulario</p>
       )}
-      <h2>Editar encuesta</h2>
-      <form onSubmit={handleSubmit}>
-        <Input
-          value={question}
-          name="question"
-          label="Pregunta"
-          placeholder="Pregunta"
-          onChange={handleQuestionChange}
-          error={questionError}
-        />
-        {options.map((option, index, arr) => {
-          const optionNumber = index + 1;
-          const isLastOption = index === arr.length - 1;
-          return (
-            <div
-              key={`option_container_${optionNumber}`}
-              className="flex items-center"
+      <div className="text-center mb-8">
+        <h1 className="text-2xl font-bold text-foreground">Editar encuesta</h1>
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+          <Input
+            value={question}
+            name="question"
+            label="Pregunta"
+            placeholder="Pregunta"
+            onChange={handleQuestionChange}
+            error={questionError}
+          />
+        </div>
+
+        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm flex flex-col gap-2">
+          {options.map((option, index, arr) => {
+            const optionNumber = index + 1;
+            const isLastOption = index === arr.length - 1;
+            return (
+              <div
+                key={`option_container_${optionNumber}`}
+                className="flex items-center"
+              >
+                <Input
+                  value={option}
+                  name={`options_${optionNumber}`}
+                  label={`Opción ${optionNumber}`}
+                  onChange={(e) => handleOptionsChange(e, index)}
+                  placeholder={`Opción ${optionNumber}`}
+                  ref={isLastOption ? lastOptionRef : undefined}
+                  error={optionError}
+                />
+
+                {index > 0 && (
+                  <button
+                    type="button"
+                    className="inline-block ml-2 mt-4 text-slate-600 cursor-pointer"
+                    onClick={() => removeOption(index)}
+                    title="Eliminar opción"
+                  >
+                    <i className="mgc_delete_2_line block icon-button"></i>
+                  </button>
+                )}
+              </div>
+            );
+          })}
+          {options.length < MAX_OPTIONS_LENGTH && (
+            <Button
+              variant="dashed"
+              type="button"
+              icon="add_line"
+              onClick={addOption}
+              className="mt-2"
             >
-              <Input
-                value={option}
-                name={`options_${optionNumber}`}
-                label={`Opción ${optionNumber}`}
-                onChange={(e) => handleOptionsChange(e, index)}
-                placeholder={`Opción ${optionNumber}`}
-                ref={isLastOption ? lastOptionRef : undefined}
-                error={optionError}
-              />
-              {index > 0 && (
-                <button
-                  type="button"
-                  className="inline-block ml-2 text-slate-600"
-                  onClick={() => removeOption(index)}
-                  title="Eliminar opción"
-                >
-                  <i className="mgc_eraser_line block icon-button"></i>
-                </button>
-              )}
-              {isLastOption && optionNumber < MAX_OPTIONS_LENGTH && (
-                <button
-                  type="button"
-                  className="inline-block ml-2"
-                  onClick={addOption}
-                  title="Agregar opción"
-                >
-                  <i className="mgc_add_line block icon-button"></i>
-                </button>
-              )}
-            </div>
-          );
-        })}
-        <button
+              Agregar opción
+            </Button>
+          )}
+        </div>
+        <Button
           type="submit"
-          className={`button self-end ${
-            options.length === 1 ? "mr-6" : "mr-10"
-          }`}
+          className="self-end w-full sm:w-32"
           disabled={isSubmitDisabled}
+          icon="edit_line"
         >
           Actualizar
-        </button>
+        </Button>
       </form>
     </div>
   );

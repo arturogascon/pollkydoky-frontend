@@ -1,6 +1,15 @@
 const Home = () => {
   return (
-    <div className="text-center">
+    <div className="overflow-hidden text-center flex-1">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden -z-1"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-20 right-1/4 h-72 w-72 rounded-full bg-primary/8" />
+        <div className="absolute bottom-0 left-1/4 h-48 w-48 rounded-full bg-cyan/8" />
+        <div className="absolute top-1/2 right-10 h-24 w-24 rounded-full bg-yellow/10" />
+      </div>
+
       <div className="py-5 md:py-10">
         <img
           className="block m-auto w-50"
