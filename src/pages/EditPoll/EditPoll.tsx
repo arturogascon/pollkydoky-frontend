@@ -9,7 +9,6 @@ import Button from "../../components/atoms/Button";
 const EditPoll = () => {
   const [question, setQuestion] = useState<string>("");
   const [options, setOptions] = useState<string[]>([""]);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
 
   const { id } = useParams();
 
@@ -21,6 +20,16 @@ const EditPoll = () => {
 
   const isOptionRepeated = checkIsOptionRepeated(options);
   const optionError = isOptionRepeated ? "No puedes repetir opción" : undefined;
+  const areOptionsEdited = validOptions.some(
+    (option, index) => option !== poll?.options[index]?.text,
+  );
+
+  const isSubmitDisabled =
+    !question ||
+    (question === poll?.question &&
+      validOptions.length === poll?.options.length &&
+      !areOptionsEdited) ||
+    isOptionRepeated;
 
   const navigate = useNavigate();
 
@@ -40,23 +49,6 @@ const EditPoll = () => {
       lastOptionRef?.current?.focus();
     }
   }, [options.length]);
-
-  useEffect(() => {
-    const areOptionsEdited = validOptions.some(
-      (option, index) => option !== poll?.options[index].text,
-    );
-    if (
-      (question && question !== poll?.question) ||
-      (validOptions.length > 0 &&
-        validOptions.length !== poll?.options.length) ||
-      isOptionRepeated ||
-      areOptionsEdited
-    ) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
-  }, [question, validOptions]);
 
   const handleQuestionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuestion(e.target.value);
@@ -81,7 +73,6 @@ const EditPoll = () => {
 
   const addOption = () => {
     setOptions([...options, ""]);
-    lastOptionRef?.current?.focus();
   };
 
   const handleSubmit = (e: React.FormEvent) => {

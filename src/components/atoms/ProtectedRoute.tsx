@@ -9,15 +9,7 @@ const ProtectedRoute = ({
   children: JSX.Element;
   onlyGuest?: boolean;
 }) => {
-  const { isAuthenticated, isLoading } = useAuth();
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p>Cargando...</p>
-      </div>
-    );
-  }
+  const { isAuthenticated } = useAuth();
 
   if (onlyGuest && isAuthenticated) {
     return <Navigate to="/dashboard" />;
