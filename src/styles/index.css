@@ -62,6 +62,10 @@
   a {
     @apply hover:underline;
   }
+
+  form {
+    @apply w-full max-w-3xl mx-auto;
+  }
 }
 
 span[class^="mgc_"] {

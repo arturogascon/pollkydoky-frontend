@@ -66,7 +66,7 @@ const SharePoll = () => {
         </button>
       </div>
 
-      <div className="mt-3 font-medium flex flex-row px-5 sm:px-0 sm:gap-4">
+      <div className="mt-3 font-medium flex flex-row justify-center px-5 sm:px-0 sm:gap-4">
         <Link className="text-left w-fit" to={`/poll/${id}`}>
           Ir a pagina de votacion
         </Link>

@@ -119,7 +119,7 @@ const EditPoll = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div className="rounded-3xl border border-border card p-8 shadow-sm">
           <Input
             value={question}
             name="question"
@@ -130,7 +130,7 @@ const EditPoll = () => {
           />
         </div>
 
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm flex flex-col gap-2">
+        <div className="rounded-3xl border border-border card p-8 shadow-sm flex flex-col gap-2">
           {options.map((option, index, arr) => {
             const optionNumber = index + 1;
             const isLastOption = index === arr.length - 1;

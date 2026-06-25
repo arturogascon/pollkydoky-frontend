@@ -49,7 +49,7 @@ const Login = () => {
             Ingresa para ver tus encuestas
           </p>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div className="rounded-3xl border border-border card p-8 shadow-sm">
           {loginMutation.isError && (
             <p className="error-label">{"Credenciales inválidas"}</p>
           )}

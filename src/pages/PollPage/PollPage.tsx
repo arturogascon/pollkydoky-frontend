@@ -61,8 +61,8 @@ const PollPage = () => {
 
   return (
     <div className="relative z-10 mx-auto w-full max-w-2xl flex-1 py-4">
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm md:p-8">
-        <h1 className="text-center text-balance text-xl font-bold text-foreground md:text-3xl mb-2">
+      <div className="rounded-3xl border border-border card p-6 shadow-sm md:p-8">
+        <h1 className="text-center text-balance text-xl font-bold text-foreground md:text-2xl mb-9">
           {poll?.question}
         </h1>
         {hasVoted && (
@@ -70,7 +70,7 @@ const PollPage = () => {
             * Voto previo registrado
           </p>
         )}
-        <div className="mt-8">
+        <div className="mt-2">
           {showResults || hasVoted ? (
             <div className="flex flex-col gap-y-4 items-start">
               {optionsWithPercentages.map((option, idx) => {
@@ -109,7 +109,7 @@ const PollPage = () => {
                     className={`group relative overflow-hidden rounded-2xl border font-medium px-5 py-4 text-left transition-all ${
                       isSelected
                         ? `border-2 ${color.border} ${color.bg} ring-2 ${color.ring}`
-                        : "border-border bg-card hover:border-primary/20 hover:bg-secondary/50"
+                        : "border-border card hover:border-primary/20 hover:bg-secondary/50"
                     }`}
                     type="button"
                     onClick={() => setSelectedOption(option._id)}

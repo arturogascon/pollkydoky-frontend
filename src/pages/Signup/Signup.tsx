@@ -73,7 +73,7 @@ const Signup = () => {
             Comienza a crear encuestas en segundos
           </p>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div className="rounded-3xl border border-border card p-8 shadow-sm">
           <p
             className={`error-label ${
               signupMutation.isError ? "visible" : "invisible"

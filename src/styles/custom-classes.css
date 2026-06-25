@@ -25,3 +25,7 @@
   font-size: 0.875rem;
   font-style: italic;
 }
+
+.card {
+  @apply w-full max-w-3xl mx-auto;
+}

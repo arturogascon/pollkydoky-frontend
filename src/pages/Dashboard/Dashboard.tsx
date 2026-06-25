@@ -79,7 +79,7 @@ const Dashboard = () => {
           return (
             <div
               key={poll._id}
-              className="rounded-2xl border border-border bg-card p-5 transition-shadow hover:shadow-sm md:p-6"
+              className="rounded-2xl border border-border card p-5 transition-shadow hover:shadow-sm md:p-6"
             >
               <div className="flex flex-col gap-4 md:flex-row md:items-stretch md:justify-between">
                 <div className="flex-1">
@@ -168,7 +168,7 @@ const Dashboard = () => {
       </div>
       <Modal
         overlayClassName="fixed inset-0 z-100"
-        className="rounded-lg border border-border bg-card p-6 shadow-sm max-w-sm mx-4 sm:mx-auto mt-40 outline-none"
+        className="rounded-lg border border-border card p-6 shadow-sm max-w-sm mx-4 sm:mx-auto mt-40 outline-none"
         isOpen={!!pollToDelete}
         contentLabel="Example Modal"
       >
