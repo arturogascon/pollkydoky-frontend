@@ -54,7 +54,7 @@ const Dashboard = () => {
   const pollsArray = Array.isArray(polls) ? polls : [];
 
   return (
-    <div className="max-w-6xl">
+    <div className="max-w-3xl mx-auto w-full">
       <div className="mb-8 flex flex-col sm:flex-row sm:justify-between">
         <div className="mb-4 sm:mb-0">
           <h1 className="text-2xl font-bold text-foreground md:text-3xl mb-1">
